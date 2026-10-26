@@ -1,0 +1,14 @@
+[
+  {
+    "task": "Apples",
+    "done": false,
+    "qty": 3,
+    "section": "Produce"
+  },
+  {
+    "task": "Milk",
+    "done": true,
+    "qty": 1,
+    "section": "Dairy & Egg"
+  }
+]
