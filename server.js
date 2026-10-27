@@ -5,7 +5,9 @@ const { MongoClient } = require("mongodb");
 const cors = require("cors");
 
 const app = express();
-app.use(cors({ origin: "https://saadrageh0-ai.github.io" }));
+app.use(cors({
+    origin: ["https://saadrageh0-ai.github.io", "http://127.0.0.1:3000"]
+}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -47,7 +49,7 @@ app.put("/api/shopping-list", async function (req, res) {
 })
 
 // Connect to MongoDB first, THEN start the server
-async function start () {
+async function start() {
     await client.connect();
     collection = client.db("shopping-list").collection("items");
 
@@ -55,7 +57,7 @@ async function start () {
         let fileItems = JSON.parse(fs.readFileSync("items.json", "utf8"));
         if (fileItems.length > 0) await collection.insertMany(fileItems);
     }
-     
+
     const PORT = process.env.PORT || 3000;
 
     app.listen(PORT, function () {

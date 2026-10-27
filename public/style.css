@@ -1,0 +1,150 @@
+:root {
+    --dark: rgb(24, 15, 26);
+    --light: #dcf3f0;
+    --card: #ffffff;        /* item rows */
+    --accent: #0071ce;      /* main buttons (Walmart blue 😉) */
+    --danger: #d64545;      /* delete / reset */
+}
+
+/* 🖼️ PAGE */
+body {
+    background-color: var(--light);
+    color: var(--dark);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    padding: 16px;
+    max-width: 600px;
+    margin: 0 auto;                 /* center on big screens */
+}
+
+.head {
+    margin: 0 0 16px;
+    text-align: center;
+}
+
+/* 📦 THE WHOLE SECTION: wraps items into rows */
+.list-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* 🔝 Put the input, dropdown and Add button at the TOP */
+.items-input,
+.section-select,
+.add-btn {
+    order: -2;
+}
+
+.items-input {
+    flex: 1 1 200px;               /* takes the free space */
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #b8c7c5;
+    border-radius: 8px;
+}
+
+.section-select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #b8c7c5;
+}
+
+/* 🔢 Counter under the input, list below it, full width */
+.counter {
+    order: -1;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.list {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 🏪 SECTION TITLES */
+.section-title {
+    margin: 16px 0 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+}
+
+/* 🛒 EACH ITEM ROW */
+.li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.check-btn {
+    order: -1;                     /* checkbox on the LEFT */
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.item-name {
+    flex: 1;                       /* pushes the buttons to the right */
+    cursor: pointer;
+}
+
+/* ✅ CHECKED ITEMS */
+.done .item-name {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+/* 🔘 ALL BUTTONS */
+input[type="button"] {
+    padding: 10px 14px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    filter: brightness(1.1);
+}
+
+/* ➕➖ small square buttons */
+.plus-btn,
+.minus-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: #e6eceb;
+    color: var(--dark);
+}
+
+/* 🗑️ dangerous buttons */
+.delete-btn,
+.reset-btn {
+    background: var(--danger);
+}
+
+.delete-btn {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+}
+
+/* ⬇️ Share / Reset / Clear at the bottom, side by side */
+.share-btn,
+.reset-btn,
+.clear-btn {
+    flex: 1;
+}
