@@ -2,8 +2,10 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const { MongoClient } = require("mongodb");
+const cors = require("cors");
 
 const app = express();
+app.use(cors({ origin: "https://saddrageh0-ai.github.io" }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
