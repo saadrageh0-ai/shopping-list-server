@@ -1,6 +1,8 @@
+const API = "https://shopping-list-server-rrkw.onrender.com/api/shopping-list";
+
 let items = JSON.parse(localStorage.getItem("items")) || [];
 
-function saveCopy () {
+function saveCopy() {
   localStorage.setItem("items", JSON.stringify(items));
 }
 
@@ -8,7 +10,7 @@ let sections = ["Produce", "Dairy & Egg", "Meat", "Snacks", "Frozen", "Candy", "
 
 function saveItems() {
   saveCopy();
-  fetch("/api/shopping-list", {
+  fetch(API, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(items)
@@ -208,7 +210,7 @@ function renderItems() {
 
 renderItems();
 
-fetch("/api/shopping-list")
+fetch(API)
   .then(res => res.json())
   .then(function (data) {
     items = data;
@@ -221,7 +223,7 @@ function addItem() {
   if (text === "") return;
   let newItem = { task: text, done: false, qty: 1, section: sectionSelect.value };
 
-  fetch("/api/shopping-list", {
+  fetch(API, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newItem)
