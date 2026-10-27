@@ -1,9 +1,9 @@
 :root {
-    --dark: rgb(24, 15, 26);
-    --light: #dcf3f0;
-    --card: #ffffff;        /* item rows */
-    --accent: #0071ce;      /* main buttons (Walmart blue 😉) */
-    --danger: #d64545;      /* delete / reset */
+    --dark: #2f3a2f;
+    --light: #f4f1e8;
+    --card: #fffdf7;
+    --accent: #6b8f5e;
+    --danger: #c2553b;
 }
 
 /* 🖼️ PAGE */
@@ -13,7 +13,8 @@ body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     padding: 16px;
     max-width: 600px;
-    margin: 0 auto;                 /* center on big screens */
+    margin: 0 auto;
+    /* center on big screens */
 }
 
 .head {
@@ -36,7 +37,8 @@ body {
 }
 
 .items-input {
-    flex: 1 1 200px;               /* takes the free space */
+    flex: 1 1 200px;
+    /* takes the free space */
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #b8c7c5;
@@ -89,14 +91,34 @@ body {
 }
 
 .check-btn {
-    order: -1;                     /* checkbox on the LEFT */
+    order: -1;
+    appearance: none;
+    /* remove the browser's default look */
     width: 22px;
     height: 22px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    /* round ⭕ (use 6px for a soft square) */
+    background: var(--card);
     cursor: pointer;
+    display: grid;
+    place-content: center;
+}
+
+.check-btn:checked {
+    background: var(--accent);
+}
+
+.check-btn:checked::after {
+    content: "✓";
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .item-name {
-    flex: 1;                       /* pushes the buttons to the right */
+    flex: 1;
+    /* pushes the buttons to the right */
     cursor: pointer;
 }
 
@@ -127,7 +149,7 @@ input[type="button"]:hover {
     width: 36px;
     height: 36px;
     padding: 0;
-    background: #e6eceb;
+    background: var(--accent);
     color: var(--dark);
 }
 
@@ -147,4 +169,95 @@ input[type="button"]:hover {
 .reset-btn,
 .clear-btn {
     flex: 1;
+}
+
+.section-select:focus,
+.items-input:focus {
+    outline: none;
+    border-color: var(--dark);
+    box-shadow: 0 0 0 3px var(--accent);
+    border-radius: 8px;
+}
+
+.text {
+    flex: 1;
+    padding: 6px 8px;
+    font-size: 1rem;
+    border: 1px solid #000;
+    border-radius: 6px;
+}
+
+.text:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* 📲 TABLETS (iPad, big screens) — 768px and smaller */
+@media (max-width: 768px) {
+    body {
+        max-width: 100%;
+        padding: 14px;
+    }
+}
+
+/* 📱 NORMAL PHONES (iPhone 14/15, Pixel, Galaxy S) — 480px and smaller */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .head {
+        font-size: 1.6rem;
+    }
+
+    .li {
+        gap: 6px;
+        padding: 6px 8px;
+    }
+
+    .plus-btn,
+    .minus-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .delete-btn {
+        padding: 10px 8px;
+        font-size: 0.8rem;
+    }
+
+    .share-btn,
+    .reset-btn,
+    .clear-btn {
+        flex: 1 1 100%;
+        /* one per line, easy to tap */
+    }
+}
+
+/* 🤏 SMALL PHONES (iPhone SE, small Androids) — 360px and smaller */
+@media (max-width: 360px) {
+    body {
+        padding: 6px;
+    }
+
+    .li {
+        gap: 4px;
+        padding: 6px;
+    }
+
+    .plus-btn,
+    .minus-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .delete-btn {
+        padding: 8px 6px;
+        font-size: 0.75rem;
+    }
+
+    .section-select {
+        flex: 1 1 100%;
+        /* dropdown gets its own line */
+    }
 }
