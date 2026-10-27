@@ -1,8 +1,13 @@
-let items = [];
+let items = JSON.parse(localStorage.getItem("items")) || [];
+
+function saveCopy () {
+  localStorage.setItem("items", JSON.stringify(items));
+}
 
 let sections = ["Produce", "Dairy & Egg", "Meat", "Snacks", "Frozen", "Candy", "Home needs", "clothes", "Other"]
 
 function saveItems() {
+  saveCopy();
   fetch("/api/shopping-list", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -207,6 +212,7 @@ fetch("/api/shopping-list")
   .then(res => res.json())
   .then(function (data) {
     items = data;
+    saveCopy();
     renderItems();
   })
 
@@ -226,6 +232,7 @@ function addItem() {
         return;
       }
       items.push(newItem);
+      saveCopy();
       renderItems();
     });
 
